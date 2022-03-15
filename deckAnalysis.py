@@ -35,7 +35,7 @@ def simulateMultipleDraws(deck, x, tarMana):
     print("Percent of Successful Hands: " + str(probOfTarMana))
     print("Average Turn That Hit a Wall: "+str(np.average(totalTurns)))
     print("Average Generated Mana: "+str(np.average(totalMana)))
-    print("Standard Deviation of Generated Mana: "+ str(np.std(totalMana)))
+
     
     if(graphToggle):
         plt.plot(totalTurns, 'b')
