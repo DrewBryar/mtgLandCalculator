@@ -6,8 +6,16 @@ graphToggle = False
 
 def simulateMultipleDraws(deck, x, tarMana):
     totalData = []
+    mulligans =0
     for i in range(x):
-        totalData.append(deadDrawSim(deck))
+        newData = deadDrawSim(deck)
+        if(newData[1] >=3):
+            totalData.append(newData)
+        else:
+            mulliganData = deadDrawSim(deck)
+            totalData.append(mulliganData)
+            mulligans += 1
+
 
 
     totalTurns = []
@@ -31,11 +39,12 @@ def simulateMultipleDraws(deck, x, tarMana):
     manaPerTurn.sort()
     probOfTarMana = successfulHands/(len(totalData))
 
+    print("Number of Mulligans: " + str(mulligans))
     print("Number of No Landers: " + str(noLander))
     print("Percent of Successful Hands: " + str(probOfTarMana))
     print("Average Turn That Hit a Wall: "+str(np.average(totalTurns)))
     print("Average Generated Mana: "+str(np.average(totalMana)))
-    print("Standard Deviation of Generated Mana: "+ str(np.std(totalMana)))
+
     
     if(graphToggle):
         plt.plot(totalTurns, 'b')
